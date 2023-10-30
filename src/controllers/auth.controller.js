@@ -14,7 +14,7 @@ export const login = async (req, res) => {
     if (!senhaIsValid) {
       return res.status(404).send({ message: "Usuario ou senha invalidos." });
     }
-    console.log(funcionario);
+
     const token = generateToken(funcionario._id);
 
     res.send({ token });
