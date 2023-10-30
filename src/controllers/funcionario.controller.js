@@ -1,6 +1,7 @@
 import {
   createService,
   findAllService,
+  updateService,
 } from "../services/funcionario.service.js";
 
 export const create = async (req, res) => {
@@ -32,6 +33,32 @@ export const findAll = async (req, res) => {
     }
 
     return res.send(funcionarios);
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+export const update = async (req, res) => {
+  try {
+    const { nome, CPF, senha } = req.body;
+    const { id } = req.params;
+
+    if (!nome && !CPF && !senha) {
+      return res.status(400).send({
+        message:
+          "Envie pelo menos um item para atualizar o cadastro do funcionario.",
+      });
+    }
+
+    if (senha && !(String(req.funcionarioId) === String(id))) {
+      return res
+        .status(400)
+        .send({ message: "Você não pode mudar a senha de outro funcionario." });
+    }
+
+    await updateService(id, nome, CPF, senha);
+
+    return res.send({ message: "Funcionario atualizado com sucesso." });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
