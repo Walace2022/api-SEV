@@ -21,3 +21,5 @@ export const updateService = async (id, nome, CPF, senha) => {
     }
   );
 };
+
+export const deleteService = (id) => Funcionario.findOneAndDelete({ _id: id });

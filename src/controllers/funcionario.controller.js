@@ -1,5 +1,6 @@
 import {
   createService,
+  deleteService,
   findAllService,
   updateService,
 } from "../services/funcionario.service.js";
@@ -62,4 +63,12 @@ export const update = async (req, res) => {
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
+};
+
+export const erase = async (req, res) => {
+  const { id } = req.params;
+
+  await deleteService(id);
+
+  return res.send({ message: "Funcionario deletado com sucesso." });
 };
