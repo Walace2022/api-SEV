@@ -1,11 +1,12 @@
 import { Router } from "express";
 const routes = Router();
 
-import { create, findAll, update } from "../controllers/usuario.controller.js";
+import { create, erase, findAll, update } from "../controllers/usuario.controller.js";
 import { validId } from "../middlewares/global.middleware.js";
 
 routes.post("/",create);
 routes.get("/",findAll);
 routes.patch("/:id",validId,update);
+routes.delete("/:id",validId,erase);
 
 export default routes;

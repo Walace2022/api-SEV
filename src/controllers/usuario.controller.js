@@ -1,4 +1,4 @@
-import { createService,findAllService, updateService } from "../services/usuario.service.js";
+import { createService,deleteService,findAllService, updateService } from "../services/usuario.service.js";
 
 export const create= async(req,res)=>{
     try{
@@ -43,6 +43,18 @@ export const update =async(req,res)=>{
         await updateService(id,nome,CPF,endereco,telefone);
 
         return res.send({message:"Usuario atualizado com sucesso."})
+    }catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+}
+
+export const erase = async (req,res)=>{
+    try{
+        const {id} = req.params;
+
+        await deleteService(id);
+
+        return res.send({message:"Apagado com sucesso."})
     }catch (err) {
     return res.status(500).send({ message: err.message });
   }
