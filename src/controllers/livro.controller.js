@@ -1,5 +1,6 @@
 import {
   createService,
+  deleteService,
   findAllService,
   updateService,
 } from "../services/livro.service.js";
@@ -51,6 +52,18 @@ export const update = async (req, res) => {
     await updateService(id, nome, edicao, autor, ano);
 
     return res.send({ message: "Livro atualizado com sucesso." });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+export const erase = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await deleteService(id);
+
+    return res.send({ message: "Livro deletado com sucesso." });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }

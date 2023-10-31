@@ -10,3 +10,5 @@ export const updateService = (id, nome, edicao, autor, ano) =>
     { nome, edicao, autor, ano },
     { includeResultMetadata: true }
   );
+
+export const deleteService = (id) => Livro.findOneAndDelete({ _id: id });
