@@ -1,8 +1,9 @@
 import { Router } from "express";
 const routes = Router();
 
-import { create } from "../controllers/usuario.controller.js";
+import { create, findAll } from "../controllers/usuario.controller.js";
 
-routes.post("/",create)
+routes.post("/",create);
+routes.get("/",findAll);
 
 export default routes;

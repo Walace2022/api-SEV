@@ -1,4 +1,4 @@
-import { createService } from "../services/usuario.service.js";
+import { createService,findAllService } from "../services/usuario.service.js";
 
 export const create= async(req,res)=>{
     try{
@@ -12,6 +12,20 @@ export const create= async(req,res)=>{
 
         return res.send({message:"Usuario cadastrado com sucesso."});
 
+    }catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+}
+
+export const findAll = async( req,res)=>{
+    try{
+        const usuarios = await findAll();
+
+        if(usuarios.length === 0){
+            return res.status(400).send({message:"Nenhum usuario cadastrado no momento."})
+        }
+
+        res.send(usuarios);
     }catch (err) {
     return res.status(500).send({ message: err.message });
   }
