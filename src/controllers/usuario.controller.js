@@ -1,4 +1,4 @@
-import { createService,findAllService } from "../services/usuario.service.js";
+import { createService,findAllService, updateService } from "../services/usuario.service.js";
 
 export const create= async(req,res)=>{
     try{
@@ -26,6 +26,23 @@ export const findAll = async( req,res)=>{
         }
 
         res.send(usuarios);
+    }catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+}
+
+export const update =async(req,res)=>{
+    try{
+        const {nome,CPF,endereco,telefone}= req.body;
+        const {id}=req.params;
+
+        if(!nome && !CPF && !endereco && !telefone){
+            return res.status(400).send({message:"Pelo menos um campo deve ser prenchido para atualizar o cadastro."})
+        }
+
+        await updateService(id,nome,CPF,endereco,telefone);
+
+        return res.send({message:"Usuario atualizado com sucesso."})
     }catch (err) {
     return res.status(500).send({ message: err.message });
   }
