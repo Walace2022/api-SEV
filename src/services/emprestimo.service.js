@@ -16,3 +16,5 @@ export const devolucaoService = (id) =>
       includeResultMetadata: true,
     }
   );
+
+export const deleteService = (id) => Emprestimo.findOneAndDelete({ _id: id });

@@ -1,5 +1,6 @@
 import {
   createService,
+  deleteService,
   devolucaoService,
   findAllService,
 } from "../services/emprestimo.service.js";
@@ -38,7 +39,7 @@ export const findAll = async (req, res) => {
 
     if (emprestimos.length === 0) {
       return res.status(400).send({
-        message: "Nenhum funcionario cadastrado.",
+        message: "Nenhum emprestimo cadastrado.",
       });
     }
 
@@ -55,6 +56,18 @@ export const devolucao = async (req, res) => {
     await devolucaoService(id);
 
     res.send({ message: "Devolução realizado com sucesso." });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+export const erase = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await deleteService(id);
+
+    return res.send({ message: "Emprestimo deletado com sucesso." });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
