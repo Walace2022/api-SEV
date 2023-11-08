@@ -7,3 +7,12 @@ export const findAllService = () =>
     .populate("funcionario")
     .populate("usuario")
     .populate("livro");
+
+export const devolucaoService = (id) =>
+  Emprestimo.findOneAndUpdate(
+    { _id: id },
+    { dataDevolucao: new Date() },
+    {
+      includeResultMetadata: true,
+    }
+  );

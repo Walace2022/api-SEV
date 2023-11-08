@@ -1,5 +1,6 @@
 import {
   createService,
+  devolucaoService,
   findAllService,
 } from "../services/emprestimo.service.js";
 import { findByCPF } from "../services/usuario.service.js";
@@ -42,6 +43,18 @@ export const findAll = async (req, res) => {
     }
 
     return res.send(emprestimos);
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+export const devolucao = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await devolucaoService(id);
+
+    res.send({ message: "Devolução realizado com sucesso." });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
