@@ -7,6 +7,6 @@ const LivrosSchema = mongoose.Schema({
   ano: { type: Number, required: true },
 });
 
-const Livro = mongoose.model("Livros", LivrosSchema);
+const Livros = mongoose.model("Livros", LivrosSchema);
 
-export default Livro;
+export default Livros;

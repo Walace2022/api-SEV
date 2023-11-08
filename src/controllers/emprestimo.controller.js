@@ -1,4 +1,7 @@
-import { createService } from "../services/emprestimo.service.js";
+import {
+  createService,
+  findAllService,
+} from "../services/emprestimo.service.js";
 import { findByCPF } from "../services/usuario.service.js";
 
 export const create = async (req, res) => {
@@ -23,6 +26,22 @@ export const create = async (req, res) => {
     await createService({ funcionario, livro, usuario });
 
     res.status(201).send({ message: "Emprestimo realizado com sucesso." });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+export const findAll = async (req, res) => {
+  try {
+    const emprestimos = await findAllService();
+
+    if (emprestimos.length === 0) {
+      return res.status(400).send({
+        message: "Nenhum funcionario cadastrado.",
+      });
+    }
+
+    return res.send(emprestimos);
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }

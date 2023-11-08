@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const EmprestimoSchema = mongoose.Schema({
   funcionario: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Funcionario",
     required: true,
   },
@@ -20,6 +20,6 @@ const EmprestimoSchema = mongoose.Schema({
   dataDevolucao: { type: Date },
 });
 
-const Emprestimos = mongoose.model("Emprestimo", EmprestimoSchema);
+const Emprestimo = mongoose.model("Emprestimo", EmprestimoSchema);
 
-export default Emprestimos;
+export default Emprestimo;
