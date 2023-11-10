@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 //Banco de Dados
 import connectDatabase from "./src/database/db.js";
 
@@ -18,6 +19,7 @@ const port = process.env.PORT || 3000;
 
 connectDatabase();
 app.use(express.json());
+app.use(cors());
 app.use("/funcionario", funcionarioRoute);
 app.use("/login", authRoute);
 app.use("/livro", livroRoute);
