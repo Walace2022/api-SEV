@@ -2,6 +2,7 @@ import {
   createService,
   deleteService,
   findAllService,
+  findByIdService,
   updateService,
 } from "../services/funcionario.service.js";
 
@@ -71,4 +72,16 @@ export const erase = async (req, res) => {
   await deleteService(id);
 
   return res.send({ message: "Funcionario deletado com sucesso." });
+};
+
+export const findFuncionarioLogado = async (req, res) => {
+  try {
+    const id = req.funcionarioId;
+
+    const logged = await findByIdService(id);
+
+    res.send({ nome: logged.nome });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
 };

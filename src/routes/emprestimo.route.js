@@ -11,8 +11,8 @@ import {
 import { validId } from "../middlewares/global.middleware.js";
 
 routes.post("/", authMiddleware, create);
-routes.get("/", findAll);
-routes.patch("/devolucao/:id", validId, devolucao);
-routes.delete("/:id", validId, erase);
+routes.get("/", authMiddleware, findAll);
+routes.patch("/devolucao/:id", authMiddleware, validId, devolucao);
+routes.delete("/:id", authMiddleware, validId, erase);
 
 export default routes;
