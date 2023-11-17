@@ -20,7 +20,11 @@ export const create = async (req, res) => {
 
     res.status(201).send({ message: "Funcionario cadastrado com sucesso." });
   } catch (err) {
-    return res.status(500).send({ message: err.message });
+    if (err.code === 11000) {
+      return res.status(500).send({ message: "CPF já Cadastrado" });
+    } else {
+      return res.status(500).send({ message: "Erro no Cadastro" });
+    }
   }
 };
 
@@ -36,7 +40,9 @@ export const findAll = async (req, res) => {
 
     return res.send(funcionarios);
   } catch (err) {
-    return res.status(500).send({ message: err.message });
+    return res
+      .status(500)
+      .send({ message: "Erro na Conexão ao Banco de Dados." });
   }
 };
 
