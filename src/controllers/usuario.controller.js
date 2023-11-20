@@ -32,12 +32,6 @@ export const findAll = async (req, res) => {
   try {
     const usuarios = await findAllService();
 
-    if (usuarios.length === 0) {
-      return res
-        .status(400)
-        .send({ message: "Nenhum usuario cadastrado no momento." });
-    }
-
     res.send(usuarios);
   } catch (err) {
     return res.status(500).send({ message: err.message });
