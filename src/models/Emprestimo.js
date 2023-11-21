@@ -16,8 +16,8 @@ const EmprestimoSchema = mongoose.Schema({
     ref: "Livros",
     required: true,
   },
-  dataEmprestimo: { type: Date, required: true, default: new Date() },
-  dataDevolucao: { type: Date },
+  dataEmprestimo: { type: String, required: true, default: (new Date()).toLocaleDateString() },
+  dataDevolucao: { type: String },
 });
 
 const Emprestimo = mongoose.model("Emprestimo", EmprestimoSchema);

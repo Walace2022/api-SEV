@@ -2,7 +2,7 @@ import Livro from "../models/Livros.js";
 
 export const createService = (body) => Livro.create(body);
 
-export const findAllService = () => Livro.find();
+export const findAllService = () => Livro.find().sort({_id:-1});
 
 export const updateService = (id, nome, edicao, autor, ano) =>
   Livro.findOneAndUpdate(

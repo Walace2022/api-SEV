@@ -11,7 +11,7 @@ export const findAllService = () =>
 export const devolucaoService = (id) =>
   Emprestimo.findOneAndUpdate(
     { _id: id },
-    { dataDevolucao: new Date() },
+    { dataDevolucao: (new Date()).toLocaleDateString() },
     {
       includeResultMetadata: true,
     }

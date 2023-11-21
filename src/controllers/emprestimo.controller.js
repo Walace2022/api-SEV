@@ -13,14 +13,14 @@ export const create = async (req, res) => {
 
     if (!funcionario || !livro || !CPF) {
       return res.status(400).send({
-        message: "Todos os campos precisam ser preenchidos para o cadastro.",
+        message: "Todos os campos precisam ser preenchidos para o emprestimo.",
       });
     }
 
     const user = await findByCPF(CPF);
 
     if (!user) {
-      res.status(400).send({ message: "CPF do usuario invalido." });
+      return res.status(400).send({ message: "CPF do usuario invalido." });
     }
 
     const usuario = user._id;
