@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 export const createService = (body) => Funcionario.create(body);
 
-export const findAllService = () => Funcionario.find();
+export const findAllService = () => Funcionario.find().sort({_id:-1});
 
 export const findByIdService = (id) => Funcionario.findById(id);
 

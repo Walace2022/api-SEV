@@ -4,6 +4,7 @@ export const createService = (body) => Emprestimo.create(body);
 
 export const findAllService = () =>
   Emprestimo.find()
+    .sort({_id:-1})
     .populate("funcionario")
     .populate("usuario")
     .populate("livro");
