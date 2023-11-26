@@ -19,7 +19,6 @@ export const create = async (req, res) => {
 
     return res.send({ message: "Usuario cadastrado com sucesso." });
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       return res.status(500).send({ message: "CPF já Cadastrado" });
     } else {
